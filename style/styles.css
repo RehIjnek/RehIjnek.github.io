@@ -1,0 +1,26 @@
+/* extra styling */
+
+.separator {
+    height: 5vw;
+}
+
+.profile-picture {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 33%;
+    border-radius: 50%;
+  }
+
+.section-header {
+    display: block;
+    text-align: center;
+}
+
+.section-text {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
