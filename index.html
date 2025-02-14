@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>kenjiher.com</title>
 
-    <link rel="stylesheet" href="./style/bootstrap.css">
-    <link rel="stylesheet" href="./style/styles.css">
+    <link rel="stylesheet" href="./styles/bootstrap.css">
+    <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
     <!-- navigation bar -->
-    <nav class="navbar navbar-expand-md bg-primary" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-md bg-light" data-bs-theme="light">
         <div class="container-fluid">
-            <a class="navbar-brand">Kenji Her</a>
+            <a class="navbar-brand">
+                <img src="./images/snorlax.png" alt="Logo" style="width: 150px;">
+            </a>
             <button 
                 class="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse" 
-                data-bs-target="#navbarColor01"
-                aria-controls="navbarColor01" 
+                data-bs-target="#navbarColor02"
+                aria-controls="navbarColor02" 
                 aria-expanded="false" 
                 aria-label="Toggle navigation"
             >
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarColor01">
+            <div class="collapse navbar-collapse" id="navbarColor02">
                 <ul class="navbar-nav ms-auto text-center">
                     <li class="nav-item">
                         <a class="nav-link active" href="./index.html">Home</a>
@@ -33,46 +39,13 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="#">Resume</a>
                     </li>
-                    <!-- <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link active" href="#">Contact Me</a>
-                    </li> -->
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-
-    <!-- whitespace separator -->
-    <div class="separator"></div>
-
-    <!-- profile picture -->
-    <img src="./images/headshot.jpg" alt="Kenji Her" class="profile-picture">
-
-    <!-- whitespace separator -->
-    <div class="separator"></div>
-
-    <!-- about me section -->
-    <h1 class="section-header">About Me</h1>
-    <p class="section-text">Welcome to my personal page!
-        I'm Kenji, a data engineer based out of Saint Paul, Minnesota. 
-        Outside of work, I enjoy hitting the gym, diving into personal finance, and playing ultimate frisbee. 
-        I've created this space to share a little bit about myself and to explore a variety of interests. 
-        Tap in! :)
-    </p>
-
-    <!-- whitespace separator -->
-    <div class="separator"></div>
-
-    <!-- get in touch section -->
-    <h1 class="section-header">Get In Touch</h1>
-    <a href="https://github.com/RehIjnek">
-        <img src="./images/github.png" alt="GitHub">
-    </a>
-    <a href="https://www.linkedin.com/in/kenji-her/">
-        <img src="./images/linkedin.png" alt="Linkedin">
-    </a>
-    <a href="https://www.instagram.com/haawj/">
-        <img src="./images/instagram.png" alt="Instagram">
-    </a>
 
     <!-- bootstrap scripts -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
