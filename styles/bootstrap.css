@@ -3986,6 +3986,9 @@ textarea.form-control-lg {
   justify-content: space-between;
   padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x);
 }
+.navbar {  
+  border: none!important; 
+}
 .navbar > .container,
 .navbar > .container-fluid,
 .navbar > .container-sm,
@@ -4024,9 +4027,13 @@ textarea.form-control-lg {
   margin-bottom: 0;
   list-style: none;
 }
-.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
-  color: var(--bs-navbar-active-color);
+div.navbar-nav {
+  --bs-nav-link-color: #52668d;
+  --bs-nav-link-hover-color: #e6e0ba;
 }
+/* .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+  color: var(--bs-navbar-active-color);
+} */
 .navbar-nav .dropdown-menu {
   position: static;
 }
