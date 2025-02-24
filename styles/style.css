@@ -1,7 +1,7 @@
 /* stylesheet */
 
 /* index.html */
-.home-container {
+.homepage-container {
     width: 100%;
     position: absolute;
     top: 42%;
@@ -68,13 +68,13 @@
 }
 
 /* about.html */
-.about-container {
+.aboutpage-container {
     width: 100%;
     display: inline-block;
 }
 
 .divider-container {
-    width: 60%;
+    width: 55%;
     min-width: 816px;
     height: auto;
     display: block;
@@ -83,15 +83,18 @@
     /* border:1px solid black; */
 }
 
-.text-container {
+.about-container {
     width: 50%;
     height: 400px;
+    float: left;
     /* border:1px solid black; */
 }
 
-.image-container {
+.kenji-container {
     width: 50%;
     height: 400px;
+    float: right; 
+    position: relative;
     /* border:1px solid black; */
 }
 
@@ -101,27 +104,64 @@
     position: absolute;
     margin: auto;
     top: 0;
-    left: 0;
+    /* left: 0; */
     right: 0;
     bottom: 0;
     border-radius: 50%;
 }
 
-.text-header {
+.about-header {
     width: 100%;
     height: 62px;
     font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-weight: bold;
     font-size: 40px;
     color: #52668d;
-    margin-top: 44px;
+    margin-top: 30px;
     /* border:1px solid black; */
 }
 
-.text-section {
+.about-section {
     width: 100%;
-    max-width: 500px;
-    height: 284px;
+    height: 298px;
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 16px;
+    color: #52668d;
+    margin-top: 10px;
+    /* border:1px solid black; */
+}
+
+.greyduck-container {
+    width: 100%;
+    height: auto;
+    float: inline-start;
+    /* border:1px solid black; */
+}
+
+.greyduck-image {
+    width: 100%;
+}
+
+.frisbee-container {
+    width: 100%;
+    height: 600px;
+    float: inline-start;
+    /* border:1px solid black; */
+}
+
+.frisbee-header {
+    width: 100%;
+    height: 62px;
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: bold;
+    font-size: 40px;
+    color: #52668d;
+    /* border:1px solid black; */
+}
+
+.frisbee-section {
+    width: 100%;
+    height: 498px;
     font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 16px;
     color: #52668d;
