@@ -75,7 +75,7 @@
 
 .divider-container {
     width: 55%;
-    min-width: 816px;
+    min-width: 820px;
     height: auto;
     display: block;
     margin-left: auto;
@@ -171,4 +171,29 @@
     color: #52668d;
     margin-top: 10px;
     /* border:1px solid black; */
+}
+
+/* resume.html */
+.resumepage-container {
+    width: 55%;
+    min-width: 820px;
+    height: 1150px;
+    display: inline-block;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+
+/* blog.html */
+.blogpage-container {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 50px;
+    color: #52668d;
 }
