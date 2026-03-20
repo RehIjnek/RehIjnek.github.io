@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  body {
+    @apply bg-dk-bg text-dk-text;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply text-dk-text hover:text-dk-primary font-semibold px-3 py-2 transition-colors duration-150;
+  }
+
+  .nav-link-active {
+    @apply text-dk-primary underline underline-offset-4;
+  }
+
+  .social-icon {
+    @apply w-[50px] h-[50px] object-contain transition-opacity duration-150;
+  }
+}
