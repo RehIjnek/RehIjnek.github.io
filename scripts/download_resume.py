@@ -28,7 +28,6 @@ print('Fetching CSRF token...')
 r = session.get('https://www.overleaf.com/login')
 r.raise_for_status()
 
-# Try multiple patterns — Overleaf has used both over time
 csrf = None
 for pattern in [
     r'ol-csrfToken"\s+content="([^"]+)"',
@@ -43,39 +42,74 @@ for pattern in [
         break
 
 if not csrf:
-    # Last resort: check cookies (some versions set it there)
     csrf = session.cookies.get('CSRF-TOKEN') or session.cookies.get('_csrf')
 
 if not csrf:
-    sys.exit('ERROR: Could not find CSRF token. Overleaf may have changed their login page.')
+    sys.exit('ERROR: Could not find CSRF token.')
 
-# Step 2: Authenticate
-# Send as form-encoded, not JSON — more compatible across Overleaf versions
+# Step 2: Try to extract the actual form action URL from the page
+login_post_url = 'https://www.overleaf.com/login'
+form_action = re.search(r'<form[^>]+action="([^"]+)"', r.text)
+if form_action:
+    action = form_action.group(1)
+    if action.startswith('/'):
+        action = 'https://www.overleaf.com' + action
+    print(f'Found form action URL: {action}')
+    login_post_url = action
+
+common_headers = {
+    'Referer': 'https://www.overleaf.com/login',
+    'Origin':  'https://www.overleaf.com',
+}
+
+# Step 3: Try JSON login first (newer Overleaf), fall back to form-encoded
 print('Logging in...')
 r = session.post(
-    'https://www.overleaf.com/login',
-    data={'_csrf': csrf, 'email': email, 'password': password},
-    headers={
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Referer': 'https://www.overleaf.com/login',
-        'Origin': 'https://www.overleaf.com',
-    },
+    login_post_url,
+    json={'_csrf': csrf, 'email': email, 'password': password},
+    headers={**common_headers, 'Content-Type': 'application/json'},
     allow_redirects=True,
 )
 
 if r.status_code >= 400:
+    print(f'JSON login returned {r.status_code}, retrying with form-encoded...')
+    # Re-fetch a fresh CSRF token — the old one may be consumed
+    r2 = session.get('https://www.overleaf.com/login')
+    r2.raise_for_status()
+    for pattern in [
+        r'ol-csrfToken"\s+content="([^"]+)"',
+        r'content="([^"]+)"\s+name="csrf-token"',
+        r'_csrf["\s:]+["\']([^"\']+)["\']',
+        r'name="_csrf"\s+value="([^"]+)"',
+    ]:
+        match = re.search(pattern, r2.text)
+        if match:
+            csrf = match.group(1)
+            break
+
+    r = session.post(
+        login_post_url,
+        data={'_csrf': csrf, 'email': email, 'password': password},
+        headers={**common_headers, 'Content-Type': 'application/x-www-form-urlencoded'},
+        allow_redirects=True,
+    )
+
+if r.status_code >= 400:
+    print(f'--- DEBUG: Response status: {r.status_code}')
+    print(f'--- DEBUG: Response headers: {dict(r.headers)}')
+    print(f'--- DEBUG: Response body (first 500 chars): {r.text[:500]}')
     sys.exit(f'ERROR: Login failed with status {r.status_code} — check your secrets.')
 
-if 'invalid' in r.text.lower() or 'authentication' in r.text.lower():
+if any(phrase in r.text.lower() for phrase in ['invalid', 'incorrect', 'wrong password', 'authentication failed']):
     sys.exit('ERROR: Login rejected — check OVERLEAF_EMAIL and OVERLEAF_PASSWORD secrets.')
 
-# Verify we actually have a session (Overleaf sets overleaf_session2 on success)
 if not any('session' in c.lower() for c in session.cookies.keys()):
+    print(f'--- DEBUG: Cookies present: {list(session.cookies.keys())}')
     sys.exit('ERROR: Login appeared to succeed but no session cookie was set.')
 
 print('Login successful.')
 
-# Step 3: Download the compiled PDF
+# Step 4: Download the compiled PDF
 url = f'https://www.overleaf.com/download/project/{project_id}/output/output.pdf'
 print(f'Downloading PDF from project {project_id}...')
 r = session.get(url)
